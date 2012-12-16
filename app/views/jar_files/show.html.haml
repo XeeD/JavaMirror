@@ -1,0 +1,16 @@
+%p
+  %b Name:
+  = @jar_file.name
+
+%h3 Třídy v JAR
+%ul
+  - for klass in @jar_file.classes
+    %li
+      %strong= klass.name
+      (#{klass.package})
+      %ul
+        - for method in klass.declared_instance_methods
+          %li= method
+
+
+= link_to 'Back', jar_files_path
