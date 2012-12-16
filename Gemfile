@@ -7,7 +7,7 @@ gem 'rails', '3.2.2'
 
 gem 'jdbc-sqlite3'
 gem 'activerecord-jdbcsqlite3-adapter'
-
+gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
