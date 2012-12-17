@@ -12,14 +12,15 @@ class ClassInJar
 
   def constantize
     unless @klass
-      class_in_module = package_with_class.
-          join(".")
-
-      puts "Java.#{class_in_module}"
-      @klass = eval "Java.#{class_in_module}"
+      puts "Java.#{canonical_name}"
+      @klass = eval "Java.#{canonical_name}"
     end
 
     @klass
+  end
+
+  def canonical_name
+    package_with_class.join(".")
   end
 
   def class_reflector
@@ -44,8 +45,9 @@ class ClassInJar
 
   def to_hash
     {
-        name: name,
+        name: name.to_s,
         package: package_name,
+        canonical_name: canonical_name,
         location_in_jar: location_in_jar
     }
   end

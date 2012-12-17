@@ -1,35 +1,14 @@
-%h2= @bundled_java_class.class_in_package
+%h2= @bundled_java_class.canonical_name
 
-- if @bundled_java_class.class_reflector.declared_fields.present?
-  %h3 Atributy
-  %ul
-    - @bundled_java_class.class_reflector.declared_fields.each do |field|
-      %li= field
+- if @bundled_java_class.class_reflector.superclass.present?
+  %strong
+    Rodič: #{link_to_class @bundled_java_class.class_reflector.superclass.to_s}
 
-- if @bundled_java_class.class_reflector.constructors.present?
-  %h3 Konstruktory
-  %ul
-    - @bundled_java_class.class_reflector.constructors.each do |constructor|
-      %li= constructor
-
-- if @bundled_java_class.class_reflector.instance_methods.present?
-  %h3 Veřejné metody
-  %ul
-    - @bundled_java_class.class_reflector.instance_methods.each do |method|
-      %li= method
-
-- if @bundled_java_class.class_reflector.class_methods.present?
-  %h3 Veřejné třídní metody
-  %ul
-    - @bundled_java_class.class_reflector.class_methods.each do |method|
-      %li= method
-
-%h3 Zděděné metody
-%ul
-  - @bundled_java_class.class_reflector.inherited_instance_methods.each do |method|
-    %li= method
-
-%h3 Zděděné třídní metody
-%ul
-  - @bundled_java_class.class_reflector.inherited_instance_methods.each do |method|
-    %li= method
+= feature_list :inner_classes, "Vnořené třídy"
+= feature_list :interfaces, "Implementovaná rozhraní", interfaces_with_links
+= feature_list :declared_fields, "Atributy"
+= feature_list :constructors, "Konstruktory"
+= feature_list :instance_methods, "Veřejné metody"
+= feature_list :class_methods, "Veřejné třídní metody"
+= feature_list :inherited_instance_methods, "Zděděné metody"
+= feature_list :inherited_class_methods, "Zděděné třídní metody"

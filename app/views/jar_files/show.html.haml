@@ -6,6 +6,6 @@
 %ul
   - for klass in @jar_file.bundled_java_classes
     %li
-      %strong= link_to klass.class_in_package, klass
+      %strong= link_to klass.canonical_name, klass
 
 = link_to 'Zpět na výpis JAR souborů', jar_files_path

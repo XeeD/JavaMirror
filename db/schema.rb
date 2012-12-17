@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216234029) do
+ActiveRecord::Schema.define(:version => 20121217082316) do
 
   create_table "bundled_java_classes", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(:version => 20121216234029) do
     t.integer  "jar_file_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "canonical_name"
   end
+
+  add_index "bundled_java_classes", ["canonical_name"], :name => "index_bundled_java_classes_on_canonical_name"
 
   create_table "jar_files", :force => true do |t|
     t.string   "name"

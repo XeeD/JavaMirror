@@ -25,8 +25,13 @@ class ClassReflector
     java_class.declared_class_methods
   end
 
+  def inner_classes
+    java_class.declared_classes.map { |klass| klass.to_s.gsub(/^.+\$/, "") }
+  end
+
   def self.from_bundled_java_class(bundled_java_class)
-    klass = eval "Java.#{bundled_java_class.class_in_package}"
+    bundled_java_class.require_jar
+    klass = eval "Java.#{bundled_java_class.canonical_name}"
     new(klass)
   end
 
