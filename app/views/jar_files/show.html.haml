@@ -4,13 +4,8 @@
 
 %h3 Třídy v JAR
 %ul
-  - for klass in @jar_file.classes
+  - for klass in @jar_file.bundled_java_classes
     %li
-      %strong= klass.name
-      (#{klass.package})
-      %ul
-        - for method in klass.declared_instance_methods
-          %li= method
+      %strong= link_to klass.class_in_package, klass
 
-
-= link_to 'Back', jar_files_path
+= link_to 'Zpět na výpis JAR souborů', jar_files_path

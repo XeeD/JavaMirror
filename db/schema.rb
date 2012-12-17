@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216172836) do
+ActiveRecord::Schema.define(:version => 20121216234029) do
+
+  create_table "bundled_java_classes", :force => true do |t|
+    t.string   "name"
+    t.string   "package"
+    t.string   "location_in_jar"
+    t.integer  "jar_file_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "jar_files", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,28 @@
+%h2= @bundled_java_class.class_in_package
+
+%h3 Konstruktory
+%ul
+  - @bundled_java_class.class_reflector.constructors.each do |constructor|
+    %li= constructor
+
+- if @bundled_java_class.class_reflector.instance_methods.present?
+  %h3 Veřejné metody
+  %ul
+    - @bundled_java_class.class_reflector.instance_methods.each do |method|
+      %li= method
+
+- if @bundled_java_class.class_reflector.class_methods.present?
+  %h3 Veřejné třídní metody
+  %ul
+    - @bundled_java_class.class_reflector.class_methods.each do |method|
+      %li= method
+
+%h3 Zděděné metody
+%ul
+  - @bundled_java_class.class_reflector.inherited_instance_methods.each do |method|
+    %li= method
+
+%h3 Zděděné třídní metody
+%ul
+  - @bundled_java_class.class_reflector.inherited_instance_methods.each do |method|
+    %li= method

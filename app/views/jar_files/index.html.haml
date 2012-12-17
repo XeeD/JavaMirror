@@ -1,0 +1,18 @@
+%h1 Nahrané JAR soubory
+
+%strong= link_to 'Nahrát nový JAR', new_jar_file_path
+
+%table
+  %thead
+    %tr
+      %th JAR soubor
+      %th Počet tříd
+      %th{colspan: 2}
+
+  %tbody
+    - @jar_files.each do |jar_file|
+      %tr
+        %td= jar_file.name
+        %td= jar_file.bundled_java_classes.size
+        %td= link_to 'Zobrazit třídy', jar_file
+        %td= link_to 'Smazat', jar_file, confirm: 'Are you sure?', method: :delete
