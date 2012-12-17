@@ -1,9 +1,16 @@
 %h2= @bundled_java_class.class_in_package
 
-%h3 Konstruktory
-%ul
-  - @bundled_java_class.class_reflector.constructors.each do |constructor|
-    %li= constructor
+- if @bundled_java_class.class_reflector.declared_fields.present?
+  %h3 Atributy
+  %ul
+    - @bundled_java_class.class_reflector.declared_fields.each do |field|
+      %li= field
+
+- if @bundled_java_class.class_reflector.constructors.present?
+  %h3 Konstruktory
+  %ul
+    - @bundled_java_class.class_reflector.constructors.each do |constructor|
+      %li= constructor
 
 - if @bundled_java_class.class_reflector.instance_methods.present?
   %h3 Veřejné metody
