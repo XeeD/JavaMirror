@@ -23,6 +23,8 @@ end
 
 group :production do
   gem "puma"
+  gem 'therubyrhino'
+  gem 'execjs'
 end
 
 gem 'haml'
