@@ -8,11 +8,7 @@ class BundledJavaClass < ActiveRecord::Base
     @class_reflector ||= ClassReflector.from_bundled_java_class(self)
   end
 
-  def generate_canonical_name
-    [package, name].compact.join(".")
-  end
-
   def require_jar
-    jar_file.jar_reader
+    jar_file.require_jar
   end
 end

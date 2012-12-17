@@ -1,19 +1,21 @@
 require "java"
 
 class JarReader
+  include Enumerable
+
   def initialize(path_to_jar)
     @path_to_jar = path_to_jar
     require path_to_jar
   end
 
-  def each_class
+  def each
     Zippy.open(@path_to_jar).each do |zipped_file|
       if zipped_file =~ /\.class$/
-        next if zipped_file =~ /\$\d+\.class/
         next if zipped_file =~ /\$/
+
         begin
           klass = ClassInJar.new(zipped_file)
-          klass.constantize
+          klass.preload
           yield klass
         rescue NameError => e
           p e
@@ -24,8 +26,6 @@ class JarReader
   end
 
   def classes
-    classes = []
-    each_class { |zipfile| classes << zipfile }
-    classes
+    inject { |klass| classes << klass }
   end
 end

@@ -1,10 +1,10 @@
 %p
   %b Name:
-  = @jar_file.name
+  = jar_file.name
 
 %h3 Třídy v JAR
 %ul
-  - for klass in @jar_file.bundled_java_classes
+  - for klass in jar_file.bundled_java_classes
     %li
       %strong= link_to klass.canonical_name, klass
 

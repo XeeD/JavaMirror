@@ -12,34 +12,34 @@ class ClassInJar
 
   def constantize
     unless @klass
-      puts "Java.#{canonical_name}"
       @klass = eval "Java.#{canonical_name}"
     end
 
     @klass
   end
 
-  def canonical_name
-    package_with_class.join(".")
+  def preload
+    constantize
+    nil
   end
 
-  def class_reflector
-    constantize.java_class
+  def canonical_name
+    split_canonical_name.join(".")
   end
 
   def package_name
-    package.present? ? package.join(".") : nil
+    split_package.present? ? split_package.join(".") : nil
   end
 
-  def package
+  def split_package
     (@package_path && @package_path.split("/")) || []
   end
 
-  def package_with_class
-    package + class_name
+  def split_canonical_name
+    split_package + split_class_name
   end
 
-  def class_name
+  def split_class_name
     name.split("$")
   end
 

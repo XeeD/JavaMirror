@@ -19,6 +19,10 @@ class JarFile < ActiveRecord::Base
     @jar_reader ||= JarReader.new(data.current_path)
   end
 
+  def require_jar
+    jar_reader
+  end
+
 
   protected
 
@@ -27,7 +31,7 @@ class JarFile < ActiveRecord::Base
   end
 
   def extract_classes
-    jar_reader.each_class do |klass|
+    jar_reader.each do |klass|
       bundled_java_classes.create(klass.to_hash)
     end
   end
