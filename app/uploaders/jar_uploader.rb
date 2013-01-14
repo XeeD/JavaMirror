@@ -1,3 +1,4 @@
+# CarrierWave uploader pro JAR soubory
 class JarUploader < CarrierWave::Uploader::Base
   storage :file
 

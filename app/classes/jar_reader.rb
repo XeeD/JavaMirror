@@ -1,5 +1,10 @@
+# encoding: UTF-8
+
+# Most mezi JRuby a Javou
 require "java"
 
+# Tato třída nám umožňuje získat seznam class souborů, které
+# jsou uloženy v JAR souboru.
 class JarReader
   include Enumerable
 
